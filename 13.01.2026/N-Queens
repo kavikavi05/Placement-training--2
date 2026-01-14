@@ -1,0 +1,44 @@
+import java.util.*;
+
+class Solution {
+    List<List<String>> res = new ArrayList<>();
+
+    public List<List<String>> solveNQueens(int n) {
+        char[][] board = new char[n][n];
+        for (char[] row : board)
+            Arrays.fill(row, '.');
+        backtrack(board, 0);
+        return res;
+    }
+
+    void backtrack(char[][] board, int col) {
+        if (col == board.length) {
+            List<String> list = new ArrayList<>();
+            for (char[] row : board)
+                list.add(new String(row));
+            res.add(list);
+            return;
+        }
+
+        for (int row = 0; row < board.length; row++) {
+            if (isSafe(board, row, col)) {
+                board[row][col] = 'Q';
+                backtrack(board, col + 1);
+                board[row][col] = '.';
+            }
+        }
+    }
+
+    boolean isSafe(char[][] board, int r, int c) {
+        for (int i = 0; i < c; i++)
+            if (board[r][i] == 'Q') return false;
+
+        for (int i = r, j = c; i >= 0 && j >= 0; i--, j--)
+            if (board[i][j] == 'Q') return false;
+
+        for (int i = r, j = c; i < board.length && j >= 0; i++, j--)
+            if (board[i][j] == 'Q') return false;
+
+        return true;
+    }
+}
