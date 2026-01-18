@@ -1,0 +1,8 @@
+class Solution:
+    def maxChunksToSorted(self, arr):
+        mx = res = 0
+        for i,n in enumerate(arr):
+            mx = max(mx,n)
+            if mx == i:
+                res += 1
+        return res
