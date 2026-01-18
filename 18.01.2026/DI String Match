@@ -1,0 +1,10 @@
+class Solution {
+    public int[] diStringMatch(String s) {
+        int lo=0, hi=s.length();
+        int[] res=new int[hi+1];
+        for(int i=0;i<s.length();i++)
+            res[i]= s.charAt(i)=='I'? lo++:hi--;
+        res[s.length()]=lo;
+        return res;
+    }
+}
