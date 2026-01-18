@@ -1,0 +1,11 @@
+class Solution:
+    def findShortestSubArray(self, nums):
+        from collections import defaultdict
+        cnt, first = defaultdict(int), {}
+        deg = ans = 0
+        for i,n in enumerate(nums):
+            first.setdefault(n,i)
+            cnt[n]+=1
+            if cnt[n]>deg or cnt[n]==deg and i-first[n]+1<ans:
+                deg, ans = cnt[n], i-first[n]+1
+        return ans
