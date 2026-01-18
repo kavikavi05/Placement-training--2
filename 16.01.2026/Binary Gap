@@ -1,0 +1,9 @@
+class Solution:
+    def binaryGap(self, n):
+        last = ans = -1
+        for i,c in enumerate(bin(n)[2:]):
+            if c == '1':
+                if last != -1:
+                    ans = max(ans, i-last)
+                last = i
+        return ans
