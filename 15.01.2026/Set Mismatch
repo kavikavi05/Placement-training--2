@@ -1,0 +1,6 @@
+class Solution:
+    def findErrorNums(self, nums):
+        s = set()
+        dup = sum(nums) - sum(set(nums))
+        miss = sum(range(1,len(nums)+1)) - sum(set(nums))
+        return [dup, miss]
