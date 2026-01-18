@@ -1,0 +1,10 @@
+class Solution:
+    def shortestCompletingWord(self, licensePlate, words):
+        from collections import Counter
+        need = Counter(c.lower() for c in licensePlate if c.isalpha())
+        ans = None
+        for w in words:
+            if not (need - Counter(w)):
+                if not ans or len(w) < len(ans):
+                    ans = w
+        return ans
