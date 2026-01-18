@@ -1,0 +1,16 @@
+class Solution {
+    TreeNode cur = new TreeNode(0);
+    public TreeNode increasingBST(TreeNode root) {
+        TreeNode ans = cur;
+        inorder(root);
+        return ans.right;
+    }
+    void inorder(TreeNode n){
+        if(n==null) return;
+        inorder(n.left);
+        n.left=null;
+        cur.right=n;
+        cur=n;
+        inorder(n.right);
+    }
+}
